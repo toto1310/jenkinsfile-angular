@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Lint') {
             steps {
-                sh 'npm run lint -- jenkinsfile-angular --format checkstyle > ./checkstyle-result.xml'
+                sh 'npm run lint'
                 step([
                     $class: 'CheckStylePublisher',
                     pattern: "checkstyle-result.xml"
