@@ -4,9 +4,9 @@ pipeline {
             image 'node:8-alpine'
         }
     }
-    environment {
+    // environment {
         // workDir = 'example/maven'
-    }
+    // }
 
     stages {
         stage('checkout') {
