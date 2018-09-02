@@ -18,16 +18,13 @@ pipeline {
             steps {
                 sh 'npm install'
                 sh 'npm run build --prod'
+                archiveArtifacts artifacts: 'dist/**'
             }
         }
         stage('Lint') {
             steps {
                 sh 'npm run lint'
-                step([
-                    $class: 'CheckStylePublisher',
-                    pattern: "checkstyle-result.xml"
-                ])
-
+                checkstyle canRunOnFailed: true, defaultEncoding: 'UTF-8', healthy: '', pattern: 'checkstyle-result.xml', unHealthy: ''
             }
         }
     }
